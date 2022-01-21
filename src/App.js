@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import Product from './Components/Product';
+import Toggle from './Components/ToggleLayout';
+import React, { createContext, useState } from 'react';
 
+export var ColContext = createContext({ value: false, setValue: () => { } });
 function App() {
+
+  const [value, setValue] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColContext.Provider value={{ value, setValue }}>
+      <div className="App">
+        <Toggle />
+        <Product />
+      </div>
+    </ColContext.Provider>
   );
 }
 
